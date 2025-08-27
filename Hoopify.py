@@ -22,12 +22,12 @@ def save_data(data):
     with open(filename, "w", newline="") as f:
         writer = csv.writer(f)
         writer.writerow(["PlayerID", "Name", "Team", "Points", "Assists", "Rebounds"])
-        for pid, stats in data.items():
-            writer.writerow([pid, stats["Name"], stats["Team"], stats["Points"], stats["Assists"], stats["Rebounds"]])
+        for playerid, stats in data.items():
+            writer.writerow([playerid, stats["Name"], stats["Team"], stats["Points"], stats["Assists"], stats["Rebounds"]])
 
 def add_player(data):
-    pid = input("Enter Player ID: ")
-    if pid in data:
+    playerid = input("Enter Player ID: ")
+    if playerid in data:
         print("Player already exists.")
     else:
         name = input("Enter Player Name: ")
@@ -35,44 +35,44 @@ def add_player(data):
         points = int(input("Enter Points Scored: "))
         assists = int(input("Enter Assists: "))
         rebounds = int(input("Enter Rebounds: "))
-        data[pid] = {"Name": name, "Team": team, "Points": points, "Assists": assists, "Rebounds": rebounds}
+        data[playerid] = {"Name": name, "Team": team, "Points": points, "Assists": assists, "Rebounds": rebounds}
         save_data(data)
         print("Player record added.")
 
 def delete_player(data):
-    pid = input("Enter Player ID to delete: ")
+    playerid = input("Enter Player ID to delete: ")
     if pid in data:
-        data.pop(pid)
+        data.pop(playerid)
         save_data(data)
         print("Player record deleted.")
     else:
         print("Player not found.")
 
 def search_player(data):
-    pid = input("Enter Player ID to search: ")
-    if pid in data:
-        p = data[pid]
-        print("Found:", pid, p["Name"], "| Team:", p["Team"], "| Points:", p["Points"], "| Assists:", p["Assists"], "| Rebounds:", p["Rebounds"])
+    playerid = input("Enter Player ID to search: ")
+    if playerid in data:
+        pdata = data[playerid]
+        print("Found:", playerid, pdata["Name"], "| Team:", pdata["Team"], "| Points:", pdata["Points"], "| Assists:", pdata["Assists"], "| Rebounds:", pdata["Rebounds"])
     else:
         print("Player not found.")
 
 def display_players(data):
     if data:
         print("\nBasketball Player Stats:")
-        for pid, p in data.items():
-            print(pid, p["Name"], "| Team:", p["Team"], "| Points:", p["Points"], "| Assists:", p["Assists"], "| Rebounds:", p["Rebounds"])
+        for playerid, pdata in data.items():
+            print(playerid, pdata["Name"], "| Team:", pdata["Team"], "| Points:", pdata["Points"], "| Assists:", pdata["Assists"], "| Rebounds:", pdata["Rebounds"])
     else:
         print("No player records.")
 
 def update_stats(data):
-    pid = input("Enter Player ID to update stats: ")
-    if pid in data:
+    playerid = input("Enter Player ID to update stats: ")
+    if playerid in data:
         points = int(input("Enter New Points: "))
         assists = int(input("Enter New Assists: "))
         rebounds = int(input("Enter New Rebounds: "))
-        data[pid]["Points"] = points
-        data[pid]["Assists"] = assists
-        data[pid]["Rebounds"] = rebounds
+        data[playerid]["Points"] = points
+        data[playerid]["Assists"] = assists
+        data[playerid]["Rebounds"] = rebounds
         save_data(data)
         print("Stats updated.")
     else:
@@ -117,3 +117,4 @@ if check == "yes":
 else:
     print("Alright then, keep playing and keep showing up at the court")
     print("Goodbye!")
+
