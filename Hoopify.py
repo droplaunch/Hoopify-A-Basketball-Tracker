@@ -41,7 +41,7 @@ def add_player(data):
 
 def delete_player(data):
     playerid = input("Enter Player ID to delete: ")
-    if pid in data:
+    if playerid in data:
         data.pop(playerid)
         save_data(data)
         print("Player record deleted.")
@@ -117,4 +117,5 @@ if check == "yes":
 else:
     print("Alright then, keep playing and keep showing up at the court")
     print("Goodbye!")
+
 
